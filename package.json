@@ -1,0 +1,29 @@
+{
+  "name": "id-vp",
+  "version": "1.0.0",
+  "description": "Õppetöö raames veeb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://karina-varik-1@github.com/karina-varik-1/ID-vp.git"
+  },
+  "keywords": [
+    "TLU",
+    "DTI",
+    "veeb",
+    "õppetöö"
+  ],
+  "author": "Karina Varik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karina-varik-1/ID-vp/issues"
+  },
+  "homepage": "https://github.com/karina-varik-1/ID-vp#readme",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1"
+  }
+}
