@@ -40,11 +40,39 @@ app.get('/vanasona', async (req, res)=>{
 app.get('/regvisit', (req, res)=>{
 	res.render('regvisit');
 });
+app.get('/miks', (req, res)=>{
+	res.render('miks');
+});
+app.get('/last_visit', async (req, res)=>{
+	try {
+		const data = await fs.readFile(regtextRef, "utf8");
+		const visits = data.split(";");
+		const lastVisit = visits[visits.length - 2];
+		const visitData = lastVisit.split(",");
+		
+		const name = visitData[0];
+		const date = visitData[1];
+		const time = visitData[2];
+		
+		res.render('last_visit', {
+			name: name,
+			date: date,
+			time: time
+		})
+	}
+	catch (err) {
+		console.log(err);
+	}
+});
 
 app.post('/regvisit', async (req, res)=>{
 	try {
+		const dateNow = dateET.date(0);
+		const timeNow = dateET.time();
+		
 		await fs.open(regtextRef, 'a');
-		await fs.appendFile(regtextRef, req.body.inputName + ";");
+		await fs.appendFile(regtextRef, req.body.inputName + "," + dateNow + "," + timeNow + ";");
+		
 		res.render('regvisit');
 	}
 	catch (err) {
@@ -52,5 +80,4 @@ app.post('/regvisit', async (req, res)=>{
 		res.render('regvisit');
 	}
 });
-
 app.listen(5298);
